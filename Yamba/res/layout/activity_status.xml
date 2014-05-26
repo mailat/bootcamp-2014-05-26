@@ -24,6 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="postTwitterUpdate"
-        android:text="Post update" />
+        android:text="Post update"
+        android:textStyle="bold"
+		/>
 
 </LinearLayout>

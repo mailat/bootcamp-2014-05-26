@@ -29,7 +29,8 @@ Java Tutorial http://docs.oracle.com/javase/tutorial/
 
 == Homework Day 01
 
-- TBD
+- Add in Android manifest XML the permission to use the Internet
+- Read about AsyncTask maybe move the logic from postTwitterUpdate into one
 
 == Homework Day 02
 

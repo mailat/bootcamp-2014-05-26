@@ -2,6 +2,8 @@ package com.intel.shanghai.yamba;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 
 public class SecondActivity extends Activity {
@@ -14,4 +16,6 @@ public class SecondActivity extends Activity {
 		//TextView labelStatus = (TextView) findvi
 		
 	}
+	
+
 }
