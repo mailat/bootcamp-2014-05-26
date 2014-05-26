@@ -1,20 +1,17 @@
 package com.intel.shanghai.yamba;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
-public class StatusActivity extends Activity {
+public class SecondActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		//display the screen layout
 		setContentView(R.layout.activity_status);
-		
-		//do an automatic redirection to second activity
-		startActivity(new Intent(this, SecondActivity.class));
+		//TextView labelStatus = (TextView) findvi
 		
 	}
 }
