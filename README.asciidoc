@@ -34,7 +34,8 @@ Java Tutorial http://docs.oracle.com/javase/tutorial/
 
 == Homework Day 02
 
-- TBD
+- Add in the activity_status.xml a background image for the activity background ( use this image http://ts4.mm.bing.net/th?id=HN.608004293658150413&pid=1.7 or other PNG background )
+- Style be button to have round corners
 
 == Homework Day 03
 
