@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class StatusActivity extends Activity {
@@ -53,6 +54,7 @@ public class StatusActivity extends Activity {
 	}
 
 	class PostToTwitter extends AsyncTask<String, Integer, String> {
+
 		private ProgressDialog progress;
 		
 		@Override
@@ -60,10 +62,9 @@ public class StatusActivity extends Activity {
 
 			try {
 				// post on Twitter
-				String postText = "test marius";
 				YambaClient client = new YambaClient("marius", "password");
-				client.postStatus(postText);
-				return "Posted ok the text" + postText;
+				client.postStatus(statuses[0]);
+				return "Posted ok the text" + statuses[0];
 			} catch (Throwable e) {
 				e.printStackTrace();
 				Log.d("Yamba", e.getMessage());
