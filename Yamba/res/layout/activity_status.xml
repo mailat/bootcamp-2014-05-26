@@ -1,6 +1,6 @@
-<LinearLayout android:id="@+id/mainView"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -16,9 +16,11 @@
         android:id="@+id/labelCounter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="right"
         android:text="140"
-        android:textStyle="bold"
-        android:textColor="#00FF00"/>
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#00ff00"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editText"
@@ -35,7 +37,6 @@
         android:layout_height="wrap_content"
         android:onClick="postTwitterUpdate"
         android:text="Post update"
-        android:textStyle="bold"
-		/>
+        android:textStyle="bold" />
 
 </LinearLayout>

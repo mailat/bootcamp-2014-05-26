@@ -3,23 +3,65 @@ package com.intel.shanghai.yamba;
 import com.marakana.android.yamba.clientlib.YambaClient;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class StatusActivity extends Activity {
-
+	TextView labelCounter;
+	EditText editText;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_status);
 		
 		Log.d("Yamba", "StatusActivity - onCreate");
+		
+		// we got reference to the EditText and we read the status
+		editText = (EditText) findViewById(R.id.editText);
+		
+		
+		labelCounter = (TextView) findViewById(R.id.labelCounter);
+		//labelCounter.setText(Integer.toString(140 - labelCounter.getText().length()));
+
+		
+		// watch for the number of inserted characters
+		TextWatcher watcher = new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				int count = 140 - s.length();
+				labelCounter.setText(Integer.toString(count));
+				Log.d("Yamba", "Chars left:" + count );
+				
+				// if we have 50 chars left we change the colour to RED
+				if (count<50)
+					labelCounter.setTextColor(Color.RED);
+				else
+					labelCounter.setTextColor(Color.GREEN);
+			}
+		
+		};
+		editText.addTextChangedListener(watcher);
+		
 	}
 
 	@Override
@@ -45,12 +87,10 @@ public class StatusActivity extends Activity {
 		// System.setProperty("http.proxyHost", "proxy here");
 		// System.setProperty("http.proxyPort", "port here");
 		
-		// we got reference to the EditText and we read the status
-		EditText editText = (EditText) findViewById(R.id.editText);
-		String editTextPost = editText.getText().toString();
-
 		//call the AsyncTask poster to send the text	
+		String editTextPost = editText.getText().toString();
 		new PostToTwitter().execute(editTextPost);
+		
 	}
 
 	class PostToTwitter extends AsyncTask<String, Integer, String> {
