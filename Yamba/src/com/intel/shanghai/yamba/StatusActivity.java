@@ -10,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class StatusActivity extends Activity {
@@ -19,7 +18,8 @@ public class StatusActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_status);
-
+		
+		Log.d("Yamba", "StatusActivity - onCreate");
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class StatusActivity extends Activity {
 				client.postStatus(statuses[0]);
 				return "Posted ok the text" + statuses[0];
 			} catch (Throwable e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 				Log.d("Yamba", e.getMessage());
 				return "Error on posting" + e.getMessage();
 			}
