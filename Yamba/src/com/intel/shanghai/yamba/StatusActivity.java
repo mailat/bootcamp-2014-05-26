@@ -3,6 +3,7 @@ package com.intel.shanghai.yamba;
 import com.marakana.android.yamba.clientlib.YambaClient;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -71,18 +72,6 @@ public class StatusActivity extends Activity {
 		return true;
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
-
 	public void postTwitterUpdate(View v) {
 		// System.setProperty("http.proxyHost", "proxy here");
 		// System.setProperty("http.proxyPort", "port here");
@@ -123,6 +112,16 @@ public class StatusActivity extends Activity {
 			progress = ProgressDialog.show(StatusActivity.this, "Posting to yamba server", "Please wait ....");
 		}
 
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			startActivity(new Intent(this, PrefsActivity.class));
+		}
+		return true;
 	}
 
 }
