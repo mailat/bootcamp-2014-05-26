@@ -34,8 +34,9 @@ Java Tutorial http://docs.oracle.com/javase/tutorial/
 
 == Homework Day 02
 
-- Add in the activity_status.xml a background image for the activity background ( use this image http://ts4.mm.bing.net/th?id=HN.608004293658150413&pid=1.7 or other PNG background )
-- Style be button to have round corners
+- If the user has no credentials, display a Toast mesaage and redirect the user to the PefsActivty
+- Add in the "activity_status.xml" a background image for the activity background ( use this image http://ts4.mm.bing.net/th?id=HN.608004293658150413&pid=1.7 or other PNG background )
+- Style be button in the "activity_status.xml" to have round corners (use no image, just a layout)
 
 == Homework Day 03
 
