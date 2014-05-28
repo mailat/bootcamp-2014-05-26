@@ -40,7 +40,7 @@ Java Tutorial http://docs.oracle.com/javase/tutorial/
 
 == Homework Day 03
 
-- TBD
+- detect the receiving of an SMS with an BroadcastReceiver and log the content in this SMS
 
 == Homework Day 04
 

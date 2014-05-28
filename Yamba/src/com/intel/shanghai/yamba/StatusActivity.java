@@ -73,9 +73,6 @@ public class StatusActivity extends Activity{
 	}
 
 	public void postTwitterUpdate(View v) {
-		// System.setProperty("http.proxyHost", "proxy here");
-		// System.setProperty("http.proxyPort", "port here");
-		
 		//call the AsyncTask poster to send the text	
 		String editTextPost = editText.getText().toString();
 		new PostToTwitter().execute(editTextPost);
