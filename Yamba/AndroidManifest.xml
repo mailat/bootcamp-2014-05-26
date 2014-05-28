@@ -15,7 +15,8 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-		android:debuggable="true">
+		android:debuggable="true"
+		android:name=".YambaApplication">
 		
         <activity
             android:name=".StatusActivity"
