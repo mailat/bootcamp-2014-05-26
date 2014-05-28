@@ -1,5 +1,7 @@
 package com.intel.shanghai.yamba;
 
+import java.util.List;
+import com.marakana.android.yamba.clientlib.YambaClient.Status;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -66,8 +68,14 @@ public class UpdaterService extends Service {
 			while (updaterService.runFlag)
 			{
 				try {
-					//TODO go wild and get data from server
-					//Yamba get ...
+					//go wild and get data from server
+					Log.d("Yamba", "Break is over, get the new posts.");
+					List<Status> timeline = ((YambaApplication) getApplication()).getYambaClient().getTimeline(20);
+					
+					 //parse the values
+					for (Status status : timeline)
+						Log.d("Yamba", status.getUser() + ": " + status.getMessage() +
+								"-" + status.getCreatedAt());
 					
 					//delay sleep between data fetch
 					Thread.sleep(DELAY);
