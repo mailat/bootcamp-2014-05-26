@@ -9,5 +9,6 @@
     <string name="usernameSummary">Please enter your username.</string>
     <string name="passwordTitle">Password</string>
     <string name="passwordSummary">Please enter your password.</string>
-    
+    <string name="action_startservice">Start service</string>
+    <string name="action_stopservice">Stop service</string>
 </resources>

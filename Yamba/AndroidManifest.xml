@@ -27,8 +27,9 @@
             </intent-filter>
         </activity>
         
-         <activity android:name=".SecondActivity"/>
-         <activity android:name=".PrefsActivity"/>
+		<activity android:name=".SecondActivity"/>
+		<activity android:name=".PrefsActivity"/>
+		<service android:name=".UpdaterService"/>
                  
     </application>
 

@@ -136,9 +136,16 @@ public class StatusActivity extends Activity implements OnSharedPreferenceChange
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here
 		int id = item.getItemId();
+		
 		if (id == R.id.action_settings) {
 			startActivity(new Intent(this, PrefsActivity.class));
 		}
+		else if (id == R.id.actionServiceStart) {
+			startService(new Intent(this, UpdaterService.class));
+		}
+		else if (id == R.id.actionServiceStop) {
+			stopService(new Intent(this, UpdaterService.class));
+		}		
 		return true;
 	}
 
