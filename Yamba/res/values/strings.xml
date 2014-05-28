@@ -11,4 +11,6 @@
     <string name="passwordSummary">Please enter your password.</string>
     <string name="action_startservice">Start service</string>
     <string name="action_stopservice">Stop service</string>
+    <string name="action_refreshservice">Refresh service</string>
+    
 </resources>

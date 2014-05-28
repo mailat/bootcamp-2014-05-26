@@ -36,7 +36,12 @@ public class UpdaterService extends Service {
 		if (!this.runFlag)
 		{
 			this.runFlag = true;
+			try
+			{
 			this.updater.start();
+			}
+			catch(Throwable e)
+			{			this.runFlag = false;}
 		}		
 		
 		return START_STICKY;
@@ -80,8 +85,8 @@ public class UpdaterService extends Service {
 					//delay sleep between data fetch
 					Thread.sleep(DELAY);
 				} catch (Throwable e) {
-					e.printStackTrace();
 					updaterService.runFlag = false;
+					UpdaterService.this.runFlag = false;
 				}
 			}
 

@@ -124,7 +124,10 @@ public class StatusActivity extends Activity{
 		}
 		else if (id == R.id.actionServiceStop) {
 			stopService(new Intent(this, UpdaterService.class));
-		}		
+		}	
+		else if (id == R.id.actionServicerefresh) {
+			startService(new Intent(this, RefreshService.class));
+		}			
 		return true;
 	}
 
