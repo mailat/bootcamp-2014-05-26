@@ -44,7 +44,7 @@ Java Tutorial http://docs.oracle.com/javase/tutorial/
 
 == Homework Day 04
 
-- TBD
+- Complete the forecast as a ListActivity, take the values from the API call http://api.openweathermap.org/data/2.5/weather?q=Shanghai,en&units=metric
 
 == Homework Day 05
 
