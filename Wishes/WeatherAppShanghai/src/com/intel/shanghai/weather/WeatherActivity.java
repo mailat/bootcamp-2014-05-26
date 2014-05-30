@@ -1,9 +1,7 @@
 package com.intel.shanghai.weather;
 
-
-import java.net.MalformedURLException;
+import java.io.InputStream;
 import java.net.URL;
-
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
@@ -16,15 +14,12 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class WeatherActivity extends Activity {
 	String request;
@@ -54,7 +49,7 @@ public class WeatherActivity extends Activity {
 		// System.setProperty("http.proxyHost", "proxy here");
 		// System.setProperty("http.proxyPort", "port here");
 
-		//get the data in an AsyncTask
+		// get the data in an AsyncTask
 		new WeatherUpdater().execute();
 
 	}
@@ -69,6 +64,7 @@ public class WeatherActivity extends Activity {
 				HttpClient client = new DefaultHttpClient();
 				HttpGet httpget = new HttpGet(request);
 				response = client.execute(httpget, new BasicResponseHandler());
+
 				return response;
 
 			} catch (Throwable e) {
@@ -81,38 +77,72 @@ public class WeatherActivity extends Activity {
 		protected void onPostExecute(String result) {
 			progress.dismiss();
 
-			//parse the JSON and get the temperature
+			// parse the JSON and get the temperature
 			try {
 				JSONObject jObj = new JSONObject(response);
 				JSONObject jsonObj = jObj.getJSONObject("main");
-				listText.setText(new Float(jsonObj.getString("temp")).intValue() + "\u00B0");
-				minTemp.setText(new Float(jsonObj.getString("temp_min")).intValue() + "\u00B0");
-				maxtemp.setText(new Float(jsonObj.getString("temp_max")).intValue() + "\u00B0");
+				listText.setText(new Float(jsonObj.getString("temp"))
+						.intValue() + "\u00B0");
+				minTemp.setText(new Float(jsonObj.getString("temp_min"))
+						.intValue() + "\u00B0");
+				maxtemp.setText(new Float(jsonObj.getString("temp_max"))
+						.intValue() + "\u00B0");
 
-				//TODO - use a Thread to load this image
-				URL newurl;
-				try {
-					JSONArray jArray = jObj.getJSONArray("weather");
-					JSONObject jObject = jArray.getJSONObject(0);
-					String icon = jObject.getString("icon");
-					newurl = new URL("http://openweathermap.org/img/w/" + icon +".png");
-					Bitmap iconBitmap = BitmapFactory.decodeStream(newurl.openConnection().getInputStream()); 
-					imageIcon.setImageBitmap(iconBitmap);
-					
-				} catch (Throwable e) {
-					e.printStackTrace();
-				}
+				// use a Thread to load this image
+				JSONArray jArray = jObj.getJSONArray("weather");
+				JSONObject jObject = jArray.getJSONObject(0);
+				String url = "http://openweathermap.org/img/w/"
+						+ jObject.getString("icon") + ".png";
+				Log.d("Weather", "http://openweathermap.org/img/w/" + url
+						+ ".png");
+				new DownloadImageTask(imageIcon).execute(url);
 
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-			
+
 		}
 
 		@Override
 		protected void onPreExecute() {
 			progress = ProgressDialog.show(WeatherActivity.this,
 					"Get the weather", "Please wait ....");
+		}
+
+	}
+
+	public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+		ImageView bmImage;
+
+		public DownloadImageTask(ImageView bmImage) {
+			this.bmImage = bmImage;
+
+		}
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+		}
+
+		protected Bitmap doInBackground(String... urls) {
+			String urldisplay = urls[0];
+			Bitmap mIcon11 = null;
+			try {
+				InputStream in = new java.net.URL(urldisplay).openStream();
+				mIcon11 = BitmapFactory.decodeStream(in);
+			} catch (Exception e) {
+				Log.e("Error", e.getMessage());
+				e.printStackTrace();
+			}
+			return mIcon11;
+		}
+
+		protected void onPostExecute(Bitmap result) {
+
+			bmImage.setImageBitmap(result);
+			bmImage.setVisibility(View.VISIBLE);
+			super.onPostExecute(result);
+
 		}
 
 	}
