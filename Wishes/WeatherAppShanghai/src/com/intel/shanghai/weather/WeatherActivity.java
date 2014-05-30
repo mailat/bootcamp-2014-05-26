@@ -4,12 +4,16 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,8 +66,16 @@ public class WeatherActivity extends Activity {
 		@Override
 		protected void onPostExecute(String result) {
 			progress.dismiss();
-			//add the result in the TextView
-			listText.setText(result);
+
+			//parse the JSON and get the temperature
+			try {
+				JSONObject jObj = new JSONObject(response);
+				JSONObject jsonObj = jObj.getJSONObject("main");
+				listText.setText(jsonObj.getString("temp"));
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			
 		}
 
 		@Override
