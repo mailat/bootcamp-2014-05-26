@@ -71,7 +71,7 @@ public class WeatherActivity extends Activity {
 			try {
 				JSONObject jObj = new JSONObject(response);
 				JSONObject jsonObj = jObj.getJSONObject("main");
-				listText.setText(jsonObj.getString("temp"));
+				listText.setText(new Float(jsonObj.getString("temp")).intValue() + "\u00B0");
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
