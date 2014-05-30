@@ -2,8 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:background="@drawable/tower">
+    android:background="@drawable/tower"
+    android:gravity="bottom"
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +15,7 @@
             android:id="@+id/imageIcon"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/w32" />
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/textView1"
@@ -70,13 +71,48 @@
         
 
     </LinearLayout>
+
     <TextView
-        android:paddingLeft="10dp"
         android:id="@+id/listText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
         android:text="50\u00B0"
         android:textColor="@android:color/white"
         android:textSize="80sp" />
+
+    <TableLayout android:layout_width="fill_parent"
+				android:layout_marginTop="2dip"
+				android:layout_height="wrap_content" 
+				android:stretchColumns="0,1,2">
+		<TableRow>
+        <TextView
+            android:id="@+id/minTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="15sp"
+            android:text="30\u00B0"
+            android:textColor="@android:color/white" />
+        <TextView
+            android:id="@+id/minTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="15sp"
+            android:text="30\u00B0"
+            android:textColor="@android:color/white" />
+        <TextView
+            android:id="@+id/minTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="15sp"
+            android:text="30\u00B0"
+            android:textColor="@android:color/white" />
+		</TableRow>
+	</TableLayout>	
+		
+   
 
 </LinearLayout>

@@ -1,7 +1,6 @@
 package com.intel.shanghai.weather;
 
 import java.io.InputStream;
-import java.net.URL;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
@@ -51,7 +50,6 @@ public class WeatherActivity extends Activity {
 
 		// get the data in an AsyncTask
 		new WeatherUpdater().execute();
-
 	}
 
 	class WeatherUpdater extends AsyncTask<String, Integer, String> {
@@ -93,14 +91,12 @@ public class WeatherActivity extends Activity {
 				JSONObject jObject = jArray.getJSONObject(0);
 				String url = "http://openweathermap.org/img/w/"
 						+ jObject.getString("icon") + ".png";
-				Log.d("Weather", "http://openweathermap.org/img/w/" + url
-						+ ".png");
+				Log.d("Weather", "http://openweathermap.org/img/w/" + url + ".png");
 				new DownloadImageTask(imageIcon).execute(url);
 
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-
 		}
 
 		@Override
@@ -138,7 +134,6 @@ public class WeatherActivity extends Activity {
 		}
 
 		protected void onPostExecute(Bitmap result) {
-
 			bmImage.setImageBitmap(result);
 			bmImage.setVisibility(View.VISIBLE);
 			super.onPostExecute(result);
