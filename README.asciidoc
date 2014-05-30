@@ -48,4 +48,4 @@ Java Tutorial http://docs.oracle.com/javase/tutorial/
 
 == Homework Day 05
 
-- TBD
+- Bring the sample WeatherApp more into direction of the http://coolmaterial.com/wp-content/uploads/2013/05/yahoo-weather-app.jpg 
