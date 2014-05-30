@@ -8,6 +8,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.app.Activity;
@@ -87,12 +88,13 @@ public class WeatherActivity extends Activity {
 				listText.setText(new Float(jsonObj.getString("temp")).intValue() + "\u00B0");
 				minTemp.setText(new Float(jsonObj.getString("temp_min")).intValue() + "\u00B0");
 				maxtemp.setText(new Float(jsonObj.getString("temp_max")).intValue() + "\u00B0");
-				
 
+				//TODO - use a Thread to load this image
 				URL newurl;
 				try {
-					jObj = jObj.getJSONObject("weather");
-					String icon = jsonObj.getString("icon");
+					JSONArray jArray = jObj.getJSONArray("weather");
+					JSONObject jObject = jArray.getJSONObject(0);
+					String icon = jObject.getString("icon");
 					newurl = new URL("http://openweathermap.org/img/w/" + icon +".png");
 					Bitmap iconBitmap = BitmapFactory.decodeStream(newurl.openConnection().getInputStream()); 
 					imageIcon.setImageBitmap(iconBitmap);
