@@ -1,5 +1,9 @@
 package com.intel.shanghai.weather;
 
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
@@ -9,10 +13,14 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +29,9 @@ public class WeatherActivity extends Activity {
 	String request;
 	String response;
 	TextView listText;
+	TextView minTemp;
+	TextView maxtemp;
+	ImageView imageIcon;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +46,9 @@ public class WeatherActivity extends Activity {
 				+ ",en&units=metric";
 
 		listText = (TextView) findViewById(R.id.listText);
-
+		minTemp = (TextView) findViewById(R.id.minTemp);
+		maxtemp = (TextView) findViewById(R.id.maxTemp);
+		imageIcon = (ImageView) findViewById(R.id.imageIcon);
 		// set the proxy in case you need it
 		// System.setProperty("http.proxyHost", "proxy here");
 		// System.setProperty("http.proxyPort", "port here");
@@ -72,6 +85,22 @@ public class WeatherActivity extends Activity {
 				JSONObject jObj = new JSONObject(response);
 				JSONObject jsonObj = jObj.getJSONObject("main");
 				listText.setText(new Float(jsonObj.getString("temp")).intValue() + "\u00B0");
+				minTemp.setText(new Float(jsonObj.getString("temp_min")).intValue() + "\u00B0");
+				maxtemp.setText(new Float(jsonObj.getString("temp_max")).intValue() + "\u00B0");
+				
+
+				URL newurl;
+				try {
+					jObj = jObj.getJSONObject("weather");
+					String icon = jsonObj.getString("icon");
+					newurl = new URL("http://openweathermap.org/img/w/" + icon +".png");
+					Bitmap iconBitmap = BitmapFactory.decodeStream(newurl.openConnection().getInputStream()); 
+					imageIcon.setImageBitmap(iconBitmap);
+					
+				} catch (Throwable e) {
+					e.printStackTrace();
+				}
+
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}

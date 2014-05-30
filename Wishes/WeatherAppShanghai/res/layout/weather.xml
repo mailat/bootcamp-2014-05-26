@@ -11,7 +11,7 @@
         android:paddingLeft="10dp" >
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/imageIcon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/w32" />
@@ -27,7 +27,49 @@
             android:textColor="@android:color/white" />
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp" >
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="20sp"
+            android:text="\u2193"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/minTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="20sp"
+            android:paddingLeft="10dp"
+            android:text="30\u00B0"
+            android:textColor="@android:color/white" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="20sp"
+            android:paddingLeft="10dp"            
+            android:text="\u2191"
+            android:textColor="@android:color/white" />
+
+        <TextView
+			android:id="@+id/maxTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="20sp"
+            android:paddingLeft="10dp"
+            android:text="37\u00B0"
+            android:textColor="@android:color/white" />        
+        
+
+    </LinearLayout>
     <TextView
         android:paddingLeft="10dp"
         android:id="@+id/listText"
